@@ -16,7 +16,7 @@ public class OrdenDesechos {
     @Id
     private String id;
 
-    private String idMedicamento; 
+    private String idMedicamento;
     private Integer cantidadPerdida;
     private LocalDate fechaBaja;
 }

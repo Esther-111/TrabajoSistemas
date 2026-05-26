@@ -24,5 +24,5 @@ public class Medicamento {
     private String formaFarmaceutica;
     private Integer cantidadStock;
     private Double precio;
-    private LocalDate fechaCaducidad; 
+    private LocalDate fechaCaducidad;
 }

@@ -1,4 +1,4 @@
-package com.farmacia.erp.DTO;
+package com.farmacia.erp.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

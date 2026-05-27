@@ -1,7 +1,7 @@
 package com.farmacia.erp.controlador;
 
 import com.farmacia.erp.entidades.Medicamento;
-import com.farmacia.erp.DTO.MedicamentoCrearDTO;
+import com.farmacia.erp.dto.MedicamentoCrearDTO;
 import com.farmacia.erp.servicio.MedicamentoServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

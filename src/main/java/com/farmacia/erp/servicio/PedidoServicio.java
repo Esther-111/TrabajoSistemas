@@ -1,5 +1,6 @@
 package com.farmacia.erp.servicio;
 
+import com.farmacia.erp.dto.DetallePedidoDTO;
 import com.farmacia.erp.entidades.DetallePedido;
 import com.farmacia.erp.entidades.Medicamento;
 import com.farmacia.erp.entidades.Pedido;
@@ -20,29 +21,35 @@ public class PedidoServicio {
     private final MedicamentoRepositorio medicamentoRepositorio;
 
     @Transactional
-    public Pedido realizarPedido(String idLaboratorio, List<DetallePedidoDTO> detallesDTO) {
+    public Pedido realizarPedido(String idLaboratorio, List<DetallePedidoDTO> detalles) {
         double costeTotal = 0.0;
 
-        // Creamos la lista de entidades que se guardará en MongoDB
+        // 1. Creamos una lista vacía para ir guardando las entidades traducidas
         List<DetallePedido> detallesEntidad = new ArrayList<>();
 
-        for (DetallePedidoDTO dto : detallesDTO) {
-            Medicamento med = medicamentoRepositorio.findById(dto.getIdMedicamento())
-                    .orElseThrow(() -> new RuntimeException("Medicamento no registrado: " + dto.getIdMedicamento()));
+        for (DetallePedidoDTO detalleDTO : detalles) {
+            Medicamento med = medicamentoRepositorio.findById(detalleDTO.getIdMedicamento())
+                    .orElseThrow(() -> new RuntimeException("Medicamento no registrado: " + detalleDTO.getIdMedicamento()));
 
-            // Sumamos las unidades al stock
-            med.setCantidadStock(med.getCantidadStock() + dto.getCantidad());
+            // Actualizamos stock
+            med.setCantidadStock(med.getCantidadStock() + detalleDTO.getCantidad());
             medicamentoRepositorio.save(med);
 
-            costeTotal += (med.getPrecio() * dto.getCantidad());
+            // Sumamos al coste total
+            costeTotal += (med.getPrecio() * detalleDTO.getCantidad());
 
-            // Convertimos vuestro DTO en la entidad DetallePedido
-            detallesEntidad.add(new DetallePedido(dto.getIdMedicamento(), dto.getCantidad()));
+            // 2. Traducimos el DTO a Entidad y lo metemos en la nueva lista
+            DetallePedido entidad = new DetallePedido();
+            entidad.setIdMedicamento(detalleDTO.getIdMedicamento());
+            entidad.setCantidad(detalleDTO.getCantidad());
+            detallesEntidad.add(entidad);
         }
 
         Pedido pedido = new Pedido();
         pedido.setIdLaboratorio(idLaboratorio);
         pedido.setFechaPedido(LocalDate.now());
+
+        // 3. Le pasamos la lista de entidades, solucionando el error
         pedido.setListaMedicamentos(detallesEntidad);
         pedido.setCosteTotal(costeTotal);
 

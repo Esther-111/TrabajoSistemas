@@ -1,6 +1,6 @@
 package com.farmacia.erp.dto;
 
-import com.farmacia.erp.dto.DetallesPedidoDTO;
+import com.farmacia.erp.dto.DetallePedidoDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -14,5 +14,5 @@ public class PedidoCrearDTO {
     private String idLaboratorio;
 
     // El carrito de la compra con los códigos de medicamentos y cantidades
-    private List<DetallesPedidoDTO> listaMedicamentos;
+    private List<DetallePedidoDTO> listaMedicamentos;
 }

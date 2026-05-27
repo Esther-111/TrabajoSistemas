@@ -3,15 +3,13 @@ package com.farmacia.erp.DTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicamentoResumenDTO {
-    private String id; // ¡Imprescindible para que la IA lo referencie!
-    private String idLaboratorio;
+public class MedicamentoCrearDTO {
+    private String idLaboratorio;       // para saber qué proveedor lo trae
     private String nombreComercial;
     private String principioActivo;
     private String dosis;

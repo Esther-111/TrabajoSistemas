@@ -4,6 +4,7 @@ import com.farmacia.erp.dto.DetallePedidoDTO;
 import com.farmacia.erp.entidades.DetallePedido;
 import com.farmacia.erp.entidades.Medicamento;
 import com.farmacia.erp.entidades.Pedido;
+import com.farmacia.erp.dto.DetallePedidoDTO; // Importamos tu DTO
 import com.farmacia.erp.repositorio.PedidoRepositorio;
 import com.farmacia.erp.repositorio.MedicamentoRepositorio;
 import lombok.RequiredArgsConstructor;

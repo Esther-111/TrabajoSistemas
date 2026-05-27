@@ -1,6 +1,6 @@
 package com.farmacia.erp.dto;
 
-import com.farmacia.erp.DTO.DetallesPedidoDTO;
+import com.farmacia.erp.dto.DetallesPedidoDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;

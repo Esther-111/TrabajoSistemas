@@ -8,9 +8,6 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DesechoCrearDTO {
-    // ID del medicamento que se va a destruir
-    private String idMedicamento;
-
-    // nº de unidades defectuosas o caducadas
-    private Integer cantidadPerdida;
+    private String idMedicamento;// Id del medicamento que se va a destruir
+    private Integer cantidadPerdida;// nº de unidades defectuosas o caducadas
 }

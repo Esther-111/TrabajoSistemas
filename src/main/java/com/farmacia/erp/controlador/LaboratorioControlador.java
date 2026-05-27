@@ -2,6 +2,7 @@ package com.farmacia.erp.controlador;
 
 import com.farmacia.erp.entidades.Laboratorio;
 import com.farmacia.erp.dto.LaboratorioCrearDTO;
+import com.farmacia.erp.dto.LaboratorioRespuestaDTO; // Importamos tu nuevo DTO
 import com.farmacia.erp.servicio.LaboratorioServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,21 @@ public class LaboratorioControlador {
     private final LaboratorioServicio servicio;
 
     @GetMapping
-    public List<Laboratorio> obtenerTodos() {
-        return servicio.listarTodos();
+    public List<LaboratorioRespuestaDTO> obtenerTodos() {
+        // Buscamos los laboratorios y los transformamos al DTO de salida
+        return servicio.listarTodos().stream()
+                .map(lab -> new LaboratorioRespuestaDTO(
+                        lab.getId(),
+                        lab.getNombreEmpresa(),
+                        lab.getTelefonoContacto(),
+                        lab.getEmailPedidos(),
+                        lab.getDireccionFiscal()
+                ))
+                .toList();
     }
 
     @PostMapping
     public Laboratorio crearLaboratorio(@RequestBody LaboratorioCrearDTO dto) {
-        // Transformamos el DTO de entrada en una Entidad real
         Laboratorio nuevoLaboratorio = new Laboratorio();
         nuevoLaboratorio.setNombreEmpresa(dto.getNombreEmpresa());
         nuevoLaboratorio.setTelefonoContacto(dto.getTelefonoContacto());

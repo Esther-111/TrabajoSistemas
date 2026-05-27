@@ -1,4 +1,4 @@
-package com.farmacia.erp.DTO;
+package com.farmacia.erp.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LaboratorioCrearDTO {
     private String nombreEmpresa;
-    private String telephoneContacto;
+    private String telefonoContacto;
     private String emailPedidos;
     private String direccionFiscal;
 }

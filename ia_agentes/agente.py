@@ -50,7 +50,7 @@ def consultar_medicamentos():
     """Consulta todos los medicamentos en la base de datos."""
     try:
         # Petición a tu servidor Java
-        respuesta = requests.get("http://localhost:8080/api/medicamentos")
+        respuesta = requests.get("http://localhost:8081/api/medicamentos")
         if respuesta.status_code == 200:
             return str(respuesta.json())
         else:
